@@ -24,7 +24,7 @@
 		</Compiler>
 		<Unit filename="AutomaticDifferentiation.hpp" />
 		<Unit filename="Minimization.hpp" />
-		<Unit filename="VariationalCalculus.cpp" />
+		<Unit filename="VariationalCalculusMain.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

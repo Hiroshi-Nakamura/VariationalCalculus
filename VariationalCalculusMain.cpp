@@ -35,6 +35,7 @@ int main(int argc, char** argv)
             x_val);
         std::cout << x_val << std::endl;
     }
+    std::cout << std::endl;
     {
         Eigen::VectorXd x_val(10);
         x_val.setZero();
