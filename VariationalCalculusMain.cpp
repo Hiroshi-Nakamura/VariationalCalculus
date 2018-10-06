@@ -1,29 +1,10 @@
 #include "Minimization.hpp"
-
-template<typename T>
-T sum_of_sq(const std::vector<T> x)
-{
-    T rtn=AutomaticDifferentiation::zero<T>();
-    for(auto e: x){
-        rtn = rtn + e*e;
-    }
-    return rtn;
-}
-
-template<typename T>
-T sum_of_sq_diff(const std::vector<T> x)
-{
-    T rtn=AutomaticDifferentiation::zero<T>();
-    for(size_t i=1; i<x.size(); i++){
-        rtn = rtn + (x[i]-x[i-1])*(x[i]-x[i-1]);
-    }
-    return rtn;
-}
+#include "VariationalCalculus.hpp"
 
 template<typename T>
 T cost_function(const std::vector<T> x)
 {
-    return sum_of_sq(x)+5.0*sum_of_sq_diff(x);
+    return VariationalCalculus::sum_of_sq(x)+5.0*VariationalCalculus::sum_of_sq_diff(x);
 }
 
 template<typename T>
@@ -36,6 +17,7 @@ int main(int argc, char** argv)
 {
     using namespace Minimization;
     using namespace AutomaticDifferentiation;
+    using namespace VariationalCalculus;
 
     {
         Eigen::VectorXd x_val(10);
