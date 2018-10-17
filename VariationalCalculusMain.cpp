@@ -9,7 +9,7 @@ int main(int argc, char** argv)
 
     {
         std::cout << "minimization of sum_of_sq()+sum_of_sq_diff() with an initial value 10.0" << std::endl;
-        Eigen::VectorXd x_val(10);
+        Eigen::VectorXd x_val(20);
         x_val.setZero();
         minimization_with_equality_constraints(
             [](const std::vector<FuncPtr<double>> x){ return sum_of_sq(x)+5.0*sum_of_sq_diff(x); },
@@ -21,7 +21,8 @@ int main(int argc, char** argv)
     }
     std::cout << std::endl;
     {
-        Eigen::VectorXd x_val(10);
+        std::cout << "minimization of sum_of_sq()+sum_of_sq_diff() with an initial and last value 10.0, an initial difference and last difference 1.0" << std::endl;
+        Eigen::VectorXd x_val(20);
         x_val.setZero();
         minimization_with_equality_constraints(
             [](const std::vector<FuncPtr<double>> x){ return sum_of_sq(x)+5.0*sum_of_sq_diff(x); },
@@ -36,14 +37,30 @@ int main(int argc, char** argv)
     }
     std::cout << std::endl;
     {
-        Eigen::VectorXd x_val(10);
-        x_val.setZero();
+        std::cout << "Catenary curve: minimization of sum_of() with an initial and last value 0.0, and the length of curve are twice of x-axis" << std::endl;
+        const int length=20;
+        Eigen::VectorXd x_val(length);
+        x_val.setOnes();
         minimization_with_equality_constraints(
             [](const std::vector<FuncPtr<double>> x){ return sum_of(x); },
             {
-                [](const std::vector<FuncPtr<double>> x){ return x.front()-0.0; }, /// initial x(t) is 0.0
-                [](const std::vector<FuncPtr<double>> x){ return x.back()-0.0; }, /// last x(t) is 0.0
-                [](const std::vector<FuncPtr<double>> x){ return length_of(x)-20.0; }, /// initial difference(dirivative approximation) x(t) is 1.0
+                [](const std::vector<FuncPtr<double>> x){ return x.front(); }, /// initial x(t) is 0.0
+                [](const std::vector<FuncPtr<double>> x){ return x.back(); }, /// last x(t) is 0.0
+                [](const std::vector<FuncPtr<double>> x){ return length_of(x)-2.0*length; }, /// initial difference(dirivative approximation) x(t) is 1.0
+            },
+            x_val);
+        std::cout << x_val << std::endl;
+    }
+    std::cout << std::endl;
+    {
+        std::cout << "Brachistochrone curve: minimization of Brachistochrone_cost() with an initial and last value 0.0" << std::endl;
+        Eigen::VectorXd x_val(20);
+        x_val.setOnes();
+        minimization_with_equality_constraints(
+            [](const std::vector<FuncPtr<double>> x){ return Brachistochrone_cost(x); },
+            {
+                [](const std::vector<FuncPtr<double>> x){ return x.front(); }, /// initial x(t) is 0.0
+                [](const std::vector<FuncPtr<double>> x){ return x.back(); }, /// last x(t) is 0.0
             },
             x_val);
         std::cout << x_val << std::endl;

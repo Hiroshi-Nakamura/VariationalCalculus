@@ -44,5 +44,15 @@ namespace VariationalCalculus {
         return rtn;
     }
 
+    template<typename T>
+    T Brachistochrone_cost(const std::vector<T> x)
+    {
+        T rtn=AutomaticDifferentiation::zero<T>();
+        for(size_t i=1; i<x.size(); i++){
+            auto diff=x[i]-x[i-1];
+            rtn = rtn + sqrt((1.0+diff*diff)/(2.0*9.8*x[i]));
+        }
+        return rtn;
+    }
 }
 #endif // VARIATIONALCALCULUS_HPP_INCLUDED
