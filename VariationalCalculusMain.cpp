@@ -38,7 +38,7 @@ int main(int argc, char** argv)
     std::cout << std::endl;
     {
         std::cout << "Catenary curve: minimization of sum_of() with an initial and last value 0.0, and the length of curve are twice of x-axis" << std::endl;
-        const int length=20;
+        const int length=39;
         Eigen::VectorXd x_val(length);
         x_val.setOnes();
         minimization_with_equality_constraints(
