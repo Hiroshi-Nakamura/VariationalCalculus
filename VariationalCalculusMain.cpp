@@ -38,15 +38,14 @@ int main(int argc, char** argv)
     std::cout << std::endl;
     {
         std::cout << "Catenary curve: minimization of sum_of() with an initial and last value 0.0, and the length of curve are twice of x-axis" << std::endl;
-        const int length=39;
-        Eigen::VectorXd x_val(length);
-        x_val.setOnes();
+        Eigen::VectorXd x_val(20);
+        x_val.setOnes(); x_val *= -1.0; /// catenary should be lower than the start and end points.
         minimization_with_equality_constraints(
             [](const std::vector<FuncPtr<double>> x){ return sum_of(x); },
             {
                 [](const std::vector<FuncPtr<double>> x){ return x.front(); }, /// initial x(t) is 0.0
                 [](const std::vector<FuncPtr<double>> x){ return x.back(); }, /// last x(t) is 0.0
-                [](const std::vector<FuncPtr<double>> x){ return length_of(x)-2.0*length; }, /// initial difference(dirivative approximation) x(t) is 1.0
+                [&x_val](const std::vector<FuncPtr<double>> x){ return length_of(x)-2.0*x_val.rows(); }, /// initial difference(dirivative approximation) x(t) is 1.0
             },
             x_val);
         std::cout << x_val << std::endl;
@@ -55,7 +54,7 @@ int main(int argc, char** argv)
     {
         std::cout << "Brachistochrone curve: minimization of Brachistochrone_cost() with an initial and last value 0.0" << std::endl;
         Eigen::VectorXd x_val(20);
-        x_val.setOnes();
+        x_val.setOnes(); x_val *= -3.0;
         minimization_with_equality_constraints(
             [](const std::vector<FuncPtr<double>> x){ return Brachistochrone_cost(x); },
             {
