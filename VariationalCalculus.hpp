@@ -50,7 +50,8 @@ namespace VariationalCalculus {
         T rtn=AutomaticDifferentiation::zero<T>();
         for(size_t i=1; i<x.size(); i++){
             auto diff=x[i]-x[i-1];
-            rtn = rtn + sqrt((1.0+diff*diff)/(2.0*9.8*x[i]));
+            auto ave=(x[i]+x[i-1])/2.0;
+            rtn = rtn + sqrt((1.0+diff*diff)/(-2.0*9.8*ave));
         }
         return rtn;
     }
