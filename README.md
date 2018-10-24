@@ -28,7 +28,7 @@ Variational calculus often has some additional constraints. For example, <img sr
 <img src="https://latex.codecogs.com/gif.latex?y_1-10=0" />
 </div>
 
-Actualy, in "VariationalCalculusMain.cpp", you can see the implementation of above example.
+Actually, in "VariationalCalculusMain.cpp", you can see the implementation of above example.
 
     Eigen::VectorXd x_val(20);
     x_val.setZero();
