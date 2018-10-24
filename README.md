@@ -15,3 +15,5 @@ In this library, we will express a function by a long vector <img src="https://l
 </div>
 
 Now, it is easy to find the solution that gives the minimal of the above left functional, by minimization the above right approximated function, whose variables are <img src="https://latex.codecogs.com/gif.latex?y_1,\cdots,y_n" />.
+
+However, variational calculus often has some additional constraints. For example, <img src="https://latex.codecogs.com/gif.latex?f(0)=0" />.
