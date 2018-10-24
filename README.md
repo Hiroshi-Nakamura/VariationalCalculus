@@ -27,3 +27,16 @@ Variational calculus often has some additional constraints. For example, <img sr
 <div align="center">
 <img src="https://latex.codecogs.com/gif.latex?y_1-10=0" />
 </div>
+
+Actualy, in "VariationalCalculusMain.cpp", you can see the implementation of above example.
+
+    Eigen::VectorXd x_val(20);
+    x_val.setZero();
+    minimization_with_equality_constraints(
+    [](const std::vector<FuncPtr<double>> x){ return sum_of_sq(x)+5.0*sum_of_sq_diff(x); },
+        {
+            [](const std::vector<FuncPtr<double>> x){ return x.front()-10.0; }
+        }, /// initial x(t) is 10.0
+        x_val);
+    std::cout << x_val << std::endl;
+        
