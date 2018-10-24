@@ -22,8 +22,8 @@ Now, it is easy to find the solution that gives the minimal of the above left fu
 </div>
 
 
-Variational calculus often has some additional constraints. For example, <img src="https://latex.codecogs.com/gif.latex?f(0)=0" />. This can be implemented by using constrainted minimization.
+Variational calculus often has some additional constraints. For example, <img src="https://latex.codecogs.com/gif.latex?f(0)=10" />. This can be implemented by using constrainted minimization.
 
 <div align="center">
-<img src="https://latex.codecogs.com/gif.latex?F(y(x))\simeq\sum_{i=1}^{n}y_i^2+\alpha\sum_{i=1}^{n-1}\left(y_{i+1}-y_i\right)^2" />
+<img src="https://latex.codecogs.com/gif.latex?y_1-10=0" />
 </div>
